@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuralin Kural - Home Screen</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.home-container {
+	display: flex;
+	width: 80%;
+	max-width: 1200px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+	flex: 1; /* Takes one part of the flex container */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+.thiruvalluvar-img {
+	width: 400px; /* Adjust the size as needed */
+	height: 100%;
+}
+
+.button-container {
+	flex: 1; /* Takes one part of the flex container */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 20px;
+}
+
+button {
+	padding: 15px;
+	background-color: #283593;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 10px 0; /* Space between buttons */
+	font-size: 16px;
+}
+
+button:hover {
+	background-color: #1a237e;
+}
+
+h1 {
+	text-align: center;
+	color: #333;
+	font-size: 24px;
+}
+</style>
+</head>
+<body>
+	<div class="home-container">
+		<div class="image-container">
+			<img
+				src="https://d18x2uyjeekruj.cloudfront.net/wp-content/uploads/2021/01/th.jpg"
+				alt="Thiruvalluvar" class="thiruvalluvar-img">
+		</div>
+		<div class="button-container">
+			<h1>Thirukkural Navigation</h1>
+			<button onclick="location.href='ThirukuralAthigaramList.html'">Athigaram
+				Name</button>
+			<button onclick="location.href='RandomKuralGenerator.jsp'">Random</button>
+			<button onclick="location.href='SearchWordFromKural.html'">Search
+				Word</button>
+			<button onclick="location.href='displayKuralFromNumber.html'">Search
+				Kural</button>
+			<button onclick="location.href='ThirukuralFlashScreen.html'">Back</button>
+		</div>
+	</div>
+</body>
+</html>

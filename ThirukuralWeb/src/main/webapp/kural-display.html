@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thirukkural Details</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 20px;
+	background-color: #f4f4f4;
+	color: #333;
+}
+
+.kural-container {
+	background: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	max-width: 800px;
+	margin: auto;
+}
+
+.kural-title {
+	text-align: center;
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: #007BFF;
+}
+
+.kural-section {
+	margin-bottom: 20px;
+}
+
+.kural-section h3 {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+.kural-section p {
+	margin: 5px 0;
+	line-height: 1.5;
+}
+
+.kural-container {
+  position: relative; /* Add this to the div containing the button */
+}
+
+.back-button {
+  display: block;
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+
+
+.back-button:hover {
+	background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+	<div class="kural-container">
+		<div class="kural-title">Thirukkural Details</div>
+		<div id="kural-display" class="kural-section"></div>
+		<a href="Home.html" class="back-button">Back</a>
+	</div>
+
+	<script>
+        // Retrieve the Kural details from localStorage
+        const kural = JSON.parse(localStorage.getItem('kuralDetails'));
+
+        // Construct a detailed string with all the properties of ThirukkuralDTO in the desired format
+        
+        
+        const kuralDetails = `
+            <div class="kural-section">
+                <h3>Thirukkural Number: ${kural.number}</h3>
+                <p><strong>Paul_name:</strong> ${kural.paul_name}</p>
+                <p><strong>Iyal_name:</strong> ${kural.iyal_name}</p>
+                <p><strong>Adikaram_name:</strong> ${kural.adikaram_name}</p>
+            </div>
+            <div class="kural-section">
+                <h3>Thirukural:</h3>
+                <p>${kural.line1}</p>
+                <p>${kural.line2}</p>
+            </div>
+            <div class="kural-section">
+                <h3>Meanings:</h3>
+                <p><strong>mv:</strong> ${kural.mv}</p>
+                <p><strong>sp:</strong> ${kural.sp}</p>
+                <p><strong>mk:</strong> ${kural.mk}</p>
+            </div>
+            <div class="kural-section">
+            <h3>Thirukkural Number: ${kural.number}</h3>
+            <p><strong>Paul_name:</strong> ${kural.paul_transliteration}</p>
+            <p><strong>Iyal_name:</strong> ${kural.iyal_transliteration}</p>
+            <p><strong>Adikaram_name:</strong> ${kural.adikaram_transliteraion}</p>
+        </div>
+        <div class="kural-section">
+            <h3>Thirukural:</h3>
+            <p>${kural.transliteration1}</p>
+            <p>${kural.transliteration2}</p>
+        </div>
+            <div class="kural-section">
+                <h3>Explanation:</h3>
+                <p>${kural.couplet}</p>
+                <p>${kural.explanation}</p>
+            </div>
+            <div class="kural-section">
+                <h3>Translation:</h3>
+                <p>${kural.translation}</p>
+            </div>
+            <div class="kural-section">
+            <h3>Thirukkural Number: ${kural.number}</h3>
+            <p><strong>Paul_name:</strong> ${kural.paul_translation}</p>
+            <p><strong>Iyal_name:</strong> ${kural.iyal_translation}</p>
+            <p><strong>Adikaram_name:</strong> ${kural.adikaram_translation}</p>
+            <p>${kural.translation}</p>
+
+        </div>
+        `;
+
+        // Display the details on the page
+        document.getElementById('kural-display').innerHTML = kuralDetails;
+    </script>
+</body>
+</html>

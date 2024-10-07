@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuralin Kural - Thirukural Athigaram</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	display: flex;
+	height: 100vh; /* Full viewport height */
+}
+
+/* Column for Thiruvalluvar picture */
+.image-column {
+	flex: 1; /* Take up half the space */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.thiruvalluvar-image {
+	height: 90%; /* Full height */
+	width: auto; /* Maintain aspect ratio */
+	animation: fadeIn 3s; /* Animation */
+}
+
+@keyframes fadeIn {from { opacity:0;
+	
+}
+
+to {
+	opacity: 1;
+}
+
+}
+
+/* Column for Athigaram names */
+.athigaram-column {
+	flex: 1; /* Take up half the space */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	background-color: #f4f4f4; /* Light background for contrast */
+}
+
+.athigaram-title {
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: #283593; /* Color for title */
+}
+
+.athigaram-button {
+	background-color: #283593;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 10px 5px; /* Increased margin for better spacing */
+	transition: background-color 0.3s;
+	width: 100%; /* Make buttons full width */
+	max-width: 300px; /* Set max width for buttons */
+}
+
+.athigaram-button:hover {
+	background-color: #1a237e;
+}
+
+.pagination {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center; /* Center pagination buttons */
+}
+
+.pagination-button {
+	background-color: #283593;
+	color: white;
+	border: none;
+	padding: 10px 15px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin: 0 10px; /* Adjusted margin for pagination buttons */
+}
+
+.pagination-button:hover {
+	background-color: #1a237e;
+}
+</style>
+</head>
+<body>
+	<div class="image-column" role="img" aria-label="Thiruvalluvar">
+		<img
+			src="https://d18x2uyjeekruj.cloudfront.net/wp-content/uploads/2021/01/th.jpg"
+			alt="Thiruvalluvar" class="thiruvalluvar-image">
+	</div>
+<div class="athigaram-column">
+    <h4 class="athigaram-title">Select Adikaram</h4>
+    <div id="athigaram-buttons" role="group" aria-label="Adikaram selection buttons"></div>
+    
+    <!-- New section to display the Thirukkural details -->
+    <div id="kural-details" style="margin-top: 20px; padding: 20px; background-color: #f0f0f0; display: none;">
+        <h4>Kural Details:</h4>
+        <ul id="kural-list"></ul>
+    </div>
+
+    <div class="pagination">
+        <button id="prev-button" class="pagination-button" type="button" onclick="prevPage()">Previous</button>
+        <button class="pagination-button" type="button" onclick="location.href='Home.html'">Back</button>
+        <button id="next-button" class="pagination-button" type="button" onclick="nextPage()">Next</button>
+    </div>
+</div>
+
+
+	<script>
+        const athigaramNames =  [
+            "கடவுள் வாழ்த்து", "வான் சிறப்பு", "நீத்தார் பெருமை", "அரண் வலியுறுத்தல்",
+            "இல்வாழ்க்கை", "வாழ்க்கைத் துணைநலம்", "மக்கட்பேறு", "அன்புடைமை",
+            "விருந்தோம்பல்", "இனியவை கூறல்", "செய்ந்நன்றி அறிதல்", "நடுவு நிலைமை",
+            "அடக்கமுடைமை", "ஒழுக்கமுடைமை", "பிறனில் விழையாமை", "பொறையுடைமை",
+            "அழுக்காறாமை", "வெஃகாமை", "புறங்கூறாமை", "பயனில சொல்லாமை",
+            "தீவினையச்சம்", "ஒப்புரவறிதல்", "ஈகை", "புகழ்",
+            "அருளுடைமை", "புலால் மறுத்தல்", "தவம்", "கூடா ஒழுக்கம்",
+            "கள்ளாமை", "வாய்மை", "வெகுளாமை", "இன்னா செய்யாமை",
+            "கொல்லாமை", "நிலையாமை", "துறவு", "மெய்யுணர்தல்",
+            "அவா அறுத்தல்", "ஊழ்", "இறைமாட்சி", "கல்வி",
+            "கல்லாமை", "கேள்வி", "அறிவுடைமை", "குற்றங்கடிதல்",
+            "பெரியாரைத் துணைக்கோடல்", "சிற்றினம் சேராமை", "தெரிந்து செயல்வகை", "வலியறிதல்",
+            "காலம் அறிதல்", "இடன் அறிதல்", "தெரிந்து தெளிதல்", "தெரிந்து வினையாடல்",
+            "சுற்றந் தழால்", "பொச்சாவாமை", "செங்கோன்மை", "கொடுங்கோன்மை",
+            "வெருவந்த செய்யாமை", "கண்ணோட்டம்", "ஒற்றாடல்", "ஊக்கம் உடைமை",
+            "மடி இன்மை", "ஆள்வினை உடைமை", "இடுக்கண் அழியாமை", "அமைச்சு",
+            "சொல்வன்மை", "வினைத்தூய்மை", "வினைத்திட்பம்", "வினைசெயல்வகை",
+            "தூது", "மன்னரைச் சேர்ந்தொழுகல்", "குறிப்பறிதல்", "அவை அறிதல்",
+            "அவை அஞ்சாமை", "நாடு", "அரண்", "பொருள் செயல் வகை",
+            "படைமாட்சி", "படைச் செருக்கு", "நட்பு", "நட்பாராய்தல்",
+            "பழைமை", "தீ நட்பு", "கூடா நட்பு", "பேதைமை",
+            "புல்லறிவாண்மை", "இகல்", "பகைமாட்சி", "பகைத்திறம் தெரிதல்",
+            "உட்பகை", "பெரியாரைப் பிழையாமை", "பெண்வழிச் சேரல்", "வரைவின் மகளிர்",
+            "கள்ளுண்ணாமை", "சூது", "மருந்து", "குடிமை",
+            "மானம்", "பெருமை", "சான்றாண்மை", "பண்புடைமை",
+            "நன்றியில் செல்வம்", "நாணுடைமை", "குடிசெயல் வகை", "உழவு",
+            "நல்குரவு", "இரவு", "இரவச்சம்", "கயமை",
+            "தகையணங்குறுத்தல்", "குறிப்பறிதல்", "புணர்ச்சி மகிழ்தல்", "நலம் புனைந்துரைத்தல்",
+            "காதற் சிறப்புரைத்தல்", "நாணுத் துறவுரைத்தல்", "அலர் அறிவுறுத்தல்", "பிரிவாற்றாமை",
+            "படர்மெலிந் திரங்கல்", "கண்விதுப்பழிதல்", "பசப்புறு பருவரல்", "தனிப்படர் மிகுதி",
+            "நினைந்தவர் புலம்பல்", "கனவுநிலை உரைத்தல்", "பொழுதுகண்டு இரங்கல்", "உறுப்புநலன் அழிதல்",
+            "நெஞ்சோடு கிளத்தல்", "நிறையழிதல்", "அவர்வயின் விதும்பல்", "குறிப்பறிவுறுத்தல்",
+            "புணர்ச்சி விதும்பல்", "நெஞ்சோடு புலத்தல்", "புலவி", "புலவி நுணுக்கம்",
+            "ஊடலுவகை"
+        ];
+
+        const itemsPerPage = 12; // Number of buttons to show per page
+        let currentPage = 1;
+
+        function showAthigaramButtons() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const buttonContainer = document.getElementById("athigaram-buttons");
+            buttonContainer.innerHTML = ""; // Clear previous buttons
+
+            for (let i = startIndex; i < endIndex && i < athigaramNames.length; i++) {
+                const button = document.createElement("button");
+                button.className = "athigaram-button";
+                button.textContent = athigaramNames[i];
+                button.type = "button";
+                button.onclick = function () {
+                    fetchKural(i);  // Fetch Kural for the selected Adikaram
+                };
+                buttonContainer.appendChild(button);
+            }
+
+            document.getElementById("prev-button").style.display = currentPage === 1 ? 'none' : 'inline-block';
+            document.getElementById("next-button").style.display = endIndex >= athigaramNames.length ? 'none' : 'inline-block';
+        }
+
+        function nextPage() {
+            if ((currentPage * itemsPerPage) < athigaramNames.length) {
+                currentPage++;
+                showAthigaramButtons();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showAthigaramButtons();
+            }
+        }
+
+        showAthigaramButtons(); // Initial call to display buttons
+
+        function fetchKural(adikaramIndex) {
+            // Fetch request to the servlet with adikaram index as a parameter
+            fetch(`KuralServlet?adikaram=${adikaramIndex}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear any previous kural details
+                    const kuralList = document.getElementById("kural-list");
+                    kuralList.innerHTML = "";
+
+                    // Show the Kural details section
+                    document.getElementById("kural-details").style.display = "block";
+
+                    // Populate the list with the fetched Kural data
+                    data.forEach((kural, index) => {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = `${kural.number}. ${kural.line1} - ${kural.line2}`;
+                        kuralList.appendChild(listItem);
+                        
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching kural:', error);
+                });
+        }
+
+    </script>
+</body>
+</html>

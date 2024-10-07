@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuralin Kural - Flash Screen</title>
+<style>
+/* General Styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: #f4f4f4;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	text-align: center;
+}
+
+/* Splash Screen Styles */
+.splash-screen {
+	background-color: #283593; /* Dark blue background */
+	color: white;
+	padding: 20px;
+	border-radius: 15px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.book-image {
+	width: 200px; /* Adjust as needed */
+	height: auto;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+h1 {
+	font-size: 28px;
+	margin: 15px 0;
+}
+
+p {
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+.get-started-btn {
+	background-color: #fbc02d; /* Bright yellow */
+	color: #333;
+	border: none;
+	padding: 12px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
+
+.get-started-btn:hover {
+	background-color: #f9a825; /* Darker yellow on hover */
+}
+</style>
+</head>
+<body>
+	<div class="splash-screen">
+		<img
+			src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm9P4XVNodomt8vxyvMxRJ6oRH056ZUdSozA&s"
+			alt="Kuralin Kural" class="book-image">
+		<h1>Kuralin Kural</h1>
+		<p>Read the Wisdom of Thiruvalluvar</p>
+		<button class="get-started-btn" onclick="login()">Get Started</button>
+	</div>
+	<script>
+		function login() {
+			window.location.href = "LoginScreen.jsp";
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+	id="WebApp_ID" version="6.0">
+	<display-name>ThirukuralWebApplications</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+
+<servlet>
+	<servlet-name>ThirukuralAppfirstServlet</servlet-name>
+	<servlet-class>main.ThirukuralAppfirstServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>ThirukuralAppfirstServlet</servlet-name>
+	<url-pattern>/login</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+	<servlet-name>SignUpServlet</servlet-name>
+	<servlet-class>main.SignUpServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>SignUpServlet</servlet-name>
+	<url-pattern>/signup</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>RandomKuralServlet</servlet-name>
+	<servlet-class>main.RandomKuralServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>RandomKuralServlet</servlet-name>
+	<url-pattern>/random</url-pattern>
+</servlet-mapping>
+
+
+</web-app>
