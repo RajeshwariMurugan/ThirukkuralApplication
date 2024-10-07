@@ -61,6 +61,8 @@ The Thirukkural, a timeless masterpiece, covers various topics such as ethics, p
 4. **Back Navigation**: Use the 'Back' button to return to the main screen at any time.
 
 ![image](https://github.com/user-attachments/assets/e1cec10c-1fdf-41d4-a1b9-1480d6b9bc33)
+![image](https://github.com/user-attachments/assets/b5be12d1-4699-49a5-81d9-0acc8ca9ef5c)
+
 
 
 ## Known Issues and Improvements
